@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Examen helper</title>
+  <title>P1‑K2 Cybersecurity ROC 4 — Stappenplan</title>
   <style>
     :root {
       --bg: #0f172a; /* slate-900 */
@@ -53,665 +53,269 @@
     footer { color: var(--muted); text-align:center; padding: 2rem 1rem; }
     a.btn { display:inline-block; padding:.4rem .75rem; border:1px solid var(--border); border-radius:8px; color:var(--text); text-decoration:none; }
   </style>
-  <div style="margin-top:.5rem"><a class="btn" href="#inhoudw2">Klik hier om naar W2 te gaan</a></div>
 
-</head>
+<p><a class="btn" href="#checklist">Ga naar beneden</a></p>
+
 <body>
-  <header>
-    <h1>Examen configuratie werkproces 1 helper</h1>
-    <p>Hulp bij de opdrachten van werkproces 1 van het examen configuratie, dit is gebasseerd op het oefenexamen dus neem <strong>NIET</strong> alles zomaar over, maar controleer de gegevens eerst. Succes met het examen, je kan dit!!! </p>
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="glass" style="padding:20px; display:inline-block;">
+        <span class="badge">🔐 P1‑K2 • Cybersecurity • MBO 4</span>
+      </div>
+      <h1 class="title">Stappenplan voor je P1‑K2 Examen (Cybersecurity)</h1>
+      <p class="subtitle">Een complete, examenklare gids: theorie, scenario‑analyse, praktische handelingen, incidentrapportage en een laatste checklist.</p>
+    </div>
   </header>
-  <main>
-    <section class="toc" id="inhoud">
+
+  <main class="container">
+      <section class="toc" id="inhoud">
       <h2>Inhoud</h2>
       <div class="grid cols-2">
         <div>
           <ul>
-            <li><a href="#scenario">Scenario & IP-plan</a></li>
-            <li><a href="#core">Core01_ARN configuratie</a></li>
-            <li><a href="#sw01">SW01-ARN poorten</a></li>
-            <li><a href="#sw02">SW02-ARN poorten</a></li>
-            <li><a href="#wifi">WiFi: AP02 & AP_Gast</a></li>
-            <li><a href="#printer">Printer0 (statisch IP)</a></li>
-
-          </ul>
-        </div>
-        <div>
-          <ul>
-            <li><a href="#tests">Testactiviteiten (1–4)</a></li>
-            <li><a href="#pings">Pings & screenshots</a></li>
-            <li><a href="#trouble">Troubleshooting checklist</a></li>
-            <li><a href="#verificatie">Verificatiecommando’s</a></li>
-            <li><a href="#extracommandos">Extra commando's</a></li>
+            <li><a href="#eisen">Exameneisen</a></li>
+            <li> <a href="#basis">Basiskennis</a></li>
+            <li><a href="#scenario">Scenario‑analyse</a></li>
+            <li><a href="#praktijk">Praktische handelingen</a></li>
+            <li><a href="#incident">Incidentrapport</a></li>
+            <li><a href="#gedrag">Veilig gedrag</a></li>
+            <li><a href="#oefenen">Oefenen</a></li>
+            <li><a href="#checklist">Laatste check</a></li>
             <li><a href="#Websites">Websites</a></li>
-
           </ul>
+      </div>
+    </section>
+
+    <!-- Stap 1 -->
+    <section id="eisen" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 1 — Begrijp de exameneisen</h2>
+        <p class="muted">Wat MBO‑4 bij P1‑K2 doorgaans toetst:</p>
+        <ul class="list">
+          <li>✔ Herkennen van cybersecurity‑dreigingen</li>
+          <li>✔ Passende beveiligingsmaatregelen kiezen en toepassen</li>
+          <li>✔ Handelen volgens <strong>security‑ en meldingsprotocol</strong></li>
+          <li>✔ Analyse van verdachte situaties (risico + impact)</li>
+          <li>✔ Professioneel documenteren (incidentrapport/advies)</li>
+          <li>✔ Veilig gedrag tonen tijdens het examen</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Stap 2 -->
+    <section id="basis" class="grid">
+      <div class="card" style="grid-column: span 7;">
+        <h2>Stap 2 — Cybersecurity‑basiskennis</h2>
+        <h3>2.1 Dreigingen</h3>
+        <ul class="list">
+          <li>Malware: virus, worm, trojan, <em>ransomware</em></li>
+          <li>Phishing / spear phishing</li>
+          <li>Social engineering: pretexting, baiting, tailgating, shoulder surfing</li>
+          <li>DDoS, brute‑force, man‑in‑the‑middle, zero‑day</li>
+        </ul>
+        <h3>2.2 Principes</h3>
+        <ul class="list">
+          <li>CIA‑triad: <strong>Confidentiality – Integrity – Availability</strong></li>
+          <li>Least Privilege • Defense in Depth • MFA</li>
+          <li>Encryptie vs hashing • Beleid: wachtwoorden, clean desk, privacy</li>
+        </ul>
+        <h3>2.3 Technieken &amp; tools</h3>
+        <ul class="list">
+          <li>Firewall, Antivirus/EDR, VPN</li>
+          <li>Patchmanagement/updates</li>
+          <li>Schijfencryptie (BitLocker/FileVault)</li>
+        </ul>
+      </div>
+      <div class="card" style="grid-column: span 5;">
+        <h3>Snelle KPI’s</h3>
+        <div class="kpi">🧠 Theorie paraat? <span class="tag">Dreigingen</span> <span class="tag">CIA</span> <span class="tag">MFA</span></div>
+        <div class="kpi">🛡️ Tools gezien? <span class="tag">Firewall</span> <span class="tag">Antivirus</span> <span class="tag">VPN</span></div>
+        <div class="kpi">📦 Praktijk geoefend? <span class="tag">Scan</span> <span class="tag">Updates</span> <span class="tag">Encryptie</span></div>
+        <p class="muted">Tip: leg in je eigen woorden uit <em>waarom</em> elke maatregel werkt.</p>
+      </div>
+    </section>
+
+    <!-- Stap 3 -->
+    <section id="scenario" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 3 — Scenario’s analyseren</h2>
+        <div class="two-col">
+          <div>
+            <h3>3.1 Vaste analysemethode</h3>
+            <ol class="list">
+              <li><strong>Wat zie ik?</strong> (feiten, geen aannames)</li>
+              <li><strong>Risico</strong> (voor data, systemen, gebruiker)</li>
+              <li><strong>Kans × impact</strong> (inschatting)</li>
+              <li><strong>Directe actie</strong> (isoleren, blokkeren, informeren)</li>
+              <li><strong>Melding</strong> (moet dit worden vastgelegd?)</li>
+              <li><strong>Wie</strong> (volgens protocol)</li>
+            </ol>
+          </div>
+          <div>
+            <h3>3.2 Koppel situatie → maatregel</h3>
+            <table class="table">
+              <thead>
+                <tr><th>Situatie</th><th>Passende maatregel</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Phishingmail</td><td>Melden → blokkeren → verwijderen</td></tr>
+                <tr><td>Ransomware‑verdacht gedrag</td><td>Apparaat isoleren → niet herstarten → incident melden</td></tr>
+                <tr><td>Onbekende USB</td><td>Niet openen → melden → veilig laten scannen</td></tr>
+                <tr><td>Zwak wachtwoord</td><td>Password policy toepassen + uitleg</td></tr>
+                <tr><td>Open/Onveilig Wi‑Fi</td><td>VPN gebruiken of vermijden</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="scenario">
-      <h2>Scenario & IP-plan</h2>
-      <div class="grid cols-2">
-        <div class="panel">
-          <h3>Locaties en VLAN’s</h3>
-          <ul>
-            <li>Nijmegen (HQ): Management (VLAN 10), HR & Finance (VLAN 20), IT (VLAN 5)</li>
-            <li>Arnhem (wij bouwen dit): Productie (VLAN 30), Marketing (VLAN 40), Gasten_Wifi (VLAN 50)</li>
-          </ul>
-          <h3>IP Plan Arnhem</h3>
-          <ul>
-            <li><strong>Rtr_Inet</strong>: G0/0/1 = 10.10.0.1/24; G0/0/2 = 86.0.0.2 (DHCP); S0/1/0 = 185.90.90.1/30</li>
-            <li><strong>Core01_ARN SVI’s</strong>: Vlan1=10.10.0.2; Vlan30=10.10.30.1; Vlan40=10.10.40.1; Vlan50=10.10.50.1</li>
-            <li><strong>Printer0</strong> (WiFi): 10.10.40.60/24, DG 10.10.40.1</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>Aansluitingen (belangrijkste)</h3>
-          <ul>
-            <li>Core01_ARN Fa0/1 ⇄ SW01-ARN Fa0/1 (Trunk)</li>
-            <li>Core01_ARN Fa0/3 ⇄ SW02-ARN Fa0/3 (Trunk)</li>
-            <li>SW01-ARN Fa0/4 → PC4 (VLAN 30) &nbsp;|&nbsp; SW01-ARN Fa0/5 → PC5 (VLAN 30)</li>
-            <li>SW02-ARN G0/1 → AP02 (VLAN 40) &nbsp;|&nbsp; SW02-ARN Fa0/4 → PC3 (VLAN 40)</li>
-            <li>SW01-ARN Fa0/24 ⇄ SW02-ARN Fa0/23 (Trunk)</li>
-            <li>Core01_ARN Fa0/24 → AP_Gast (VLAN 50)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout">
-        <strong>WiFi SSIDs</strong> — Marketing: <span class="kbd">Solar_Arnhem</span> (WPA2-PSK <span class="kbd">solar12345</span>) · Guest: <span class="kbd">Solar_gast</span> (WPA2-PSK <span class="kbd">welkom123</span>)
-      </div>
-    </section>
-
-    <section id="core">
-      <h2>Core01_ARN — volledige configuratie</h2>
-      <p>Dit blok zet poorten naar <em>switchport-mode</em>, maakt VLAN’s & SVI’s, DHCP, trunks, ACL (guest isolatie), OSPF, en STP-root. Verander dit in kladblok</p>
-      <div class="bar"><span class="lang">Cisco IOS — Core01_ARN</span><button class="copy" data-copy="core">Kopieer</button></div>
-      <pre><code id="core">
-enable
-configure terminal
-hostname Core01_ARN
-
-! Alle poorten naar L2-switchport (veilig op L3-switch)
-interface range fastethernet0/1 - 24
- switchport
-exit
-interface range gigabitethernet0/1 - 2
- switchport
-exit
-
-! VTP Server
-vtp domain SOLAR
-vtp mode server
-
-! VLANs
-vlan 30
- name Productie
-vlan 40
- name Marketing
-vlan 50
- name Gasten_Wifi
-exit
-
-! SVI's
-interface vlan 1
- ip address 10.10.0.2 255.255.255.0
- no shutdown
-interface vlan 30
- ip address 10.10.30.1 255.255.255.0
- no shutdown
-interface vlan 40
- ip address 10.10.40.1 255.255.255.0
- no shutdown
-interface vlan 50
- ip address 10.10.50.1 255.255.255.0
- no shutdown
-
-! DHCP pools
-ip dhcp excluded-address 10.10.30.1 10.10.30.50
-ip dhcp excluded-address 10.10.40.1 10.10.40.50
-ip dhcp excluded-address 10.10.50.1 10.10.50.50
-
-ip dhcp pool vlan30
- network 10.10.30.0 255.255.255.0
- default-router 10.10.30.1
- dns-server 62.36.55.85
-
-ip dhcp pool vlan40
- network 10.10.40.0 255.255.255.0
- default-router 10.10.40.1
- dns-server 62.36.55.85
-
-ip dhcp pool vlan50
- network 10.10.50.0 255.255.255.0
- default-router 10.10.50.1
- dns-server 62.36.55.85
-
-! Trunks
-interface fastethernet0/1
- description Trunk-to-SW01-ARN
- switchport mode trunk
- switchport trunk allowed vlan 1,30,40,50
-
-interface fastethernet0/3
- description Trunk-to-SW02-ARN
- switchport mode trunk
- switchport trunk allowed vlan 1,30,40,50
-
-! Access-poort voor AP_Gast (VLAN50)
-interface fastethernet0/24
- description Access-to-AP_Gast
- switchport mode access
- switchport access vlan 50
-
-! OSPF
-router ospf 1
- network 10.0.0.0 0.255.255.255 area 0
-
-! ACL (guest isolatie) op VLAN50 inbound
-access-list 150 deny ip 10.10.50.0 0.0.0.255 10.10.30.0 0.0.0.255
-access-list 150 deny ip 10.10.50.0 0.0.0.255 10.10.40.0 0.0.0.255
-access-list 150 deny ip 10.10.50.0 0.0.0.255 172.16.10.0 0.0.0.255
-access-list 150 deny ip 10.10.50.0 0.0.0.255 172.16.5.0 0.0.0.255
-access-list 150 deny ip 10.10.50.0 0.0.0.255 172.16.20.0 0.0.0.255
-access-list 150 permit ip any any
-
-interface vlan 50
- ip access-group 150 in
-
-! STP Root voor alle VLANs
-spanning-tree vlan 1,30,40,50 priority 4096
-
-end</code></pre>
-      <div class="callout"><strong>Tip:</strong> Controleer met <span class="kbd">show vlan brief</span> en <span class="kbd">show interfaces trunk</span>. Fa0/24 moet bij VLAN 50 staan, Fa0/1 en Fa0/3 moeten trunk zijn.</div>
-    </section>
-
-    <section id="sw01">
-      <h2>SW01-ARN — poorten toewijzen</h2>
-      <div class="bar"><span class="lang">Cisco IOS — SW01-ARN</span><button class="copy" data-copy="sw01">Kopieer</button></div>
-      <pre><code id="sw01">enable
-configure terminal
-hostname SW01-ARN
-
-! Trunk naar Core01
-interface fastethernet0/1
- description Trunk-to-Core01_ARN
- switchport mode trunk
- switchport trunk allowed vlan 1,30,40,50
-
-! Trunk naar SW02
-interface fastethernet0/24
- description Trunk-to-SW02-ARN
- switchport mode trunk
- switchport trunk allowed vlan 1,30,40,50
-
-! Access-poorten VLAN30
-interface fastethernet0/4
- description PC4-Productie
- switchport mode access
- switchport access vlan 30
-
-interface fastethernet0/5
- description PC5-Productie
- switchport mode access
- switchport access vlan 30
-
-end
-write memory</code></pre>
-      <div class="callout">Gebruik <span class="kbd">show vlan brief</span> om te zien dat Fa0/4 en Fa0/5 in VLAN 30 zitten.</div>
-    </section>
-
-    <section id="sw02">
-      <h2>SW02-ARN — poorten toewijzen</h2>
-      <div class="bar"><span class="lang">Cisco IOS — SW02-ARN</span><button class="copy" data-copy="sw02">Kopieer</button></div>
-      <pre><code id="sw02">enable
-configure terminal
-hostname SW02-ARN
-
-! Trunk naar Core01
-interface fastethernet0/3
- description Trunk-to-Core01_ARN
- switchport mode trunk
- switchport trunk allowed vlan 1,30,40,50
-
-! Trunk naar SW01
-interface fastethernet0/23
- description Trunk-to-SW01-ARN
- switchport mode trunk
- switchport trunk allowed vlan 1,30,40,50
-
-! Access-poort VLAN40 voor PC3
-interface fastethernet0/4
- description PC3-Marketing
- switchport mode access
- switchport access vlan 40
-
-! Access-poort VLAN40 voor AP02 uplink
-interface gigabitethernet0/1
- description AP02-Uplink
- switchport mode access
- switchport access vlan 40
-
-end
-write memory</code></pre>
-      <div class="callout">Zorg dat AP02 aan <strong>Gi0/1</strong> hangt; die moet access VLAN 40 zijn.</div>
-    </section>
-
-    <section id="wifi">
-      <h2>WiFi — AP02 & AP_Gast</h2>
-      <div class="grid cols-2">
-        <div class="panel">
-          <h3>AP02 (Marketing)</h3>
-          <ul>
-            <li>Verbind AP02 Port → SW02-ARN <strong>Gi0/1</strong> (straight-through).</li>
-            <li>AP02 → <strong>Config → Wireless</strong>:
-              <ul>
-                <li>SSID: <span class="kbd">Solar_Arnhem</span></li>
-                <li>Security: <span class="kbd">WPA2-PSK</span></li>
-                <li>Passphrase: <span class="kbd">solar12345</span></li>
-                <li>IP via DHCP (10.10.40.x)</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>AP_Gast (Guest)</h3>
-          <ul>
-            <li>Verbind AP_Gast Port → Core01-ARN <strong>Fa0/24</strong>.</li>
-            <li>AP_Gast → <strong>Config → Wireless</strong>:
-              <ul>
-                <li>SSID: <span class="kbd">Solar_gast</span></li>
-                <li>Security: <span class="kbd">WPA2-PSK</span></li>
-                <li>Passphrase: <span class="kbd">welkom123</span></li>
-                <li>IP via DHCP (10.10.50.x)</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout">Laptop_gast mag <em>niet</em> naar interne netten (172.16.x.x); alleen internet (<span class="kbd">www.solar.com</span>) — ACL 150 op VLAN50 regelt dit.</div>
-    </section>
-
-    <section id="printer">
-      <h2>Printer0 — statisch IP</h2>
-      <ul>
-        <li>Printer0 → <strong>Config → IP Configuration</strong>:</li>
-      </ul>
-      <div class="bar"><span class="lang">IP instellingen Printer0</span><button class="copy" data-copy="printer">Kopieer</button></div>
-      <pre><code id="printer">IP Address: 10.10.40.60
-Subnet Mask: 255.255.255.0
-Default Gateway: 10.10.40.1
-DNS Server: 62.36.55.85</code></pre>
-    </section>
-
-    <section id="tests">
-      <h2>Testactiviteiten (volgens sjabloon)</h2>
-      <div class="grid cols-2">
-        <div class="panel">
-          <h3>Testactiviteit 1 — PC3 → www.solar.com</h3>
-          <ul>
-            <li>PC3 (VLAN40) browser → <span class="kbd">http://www.solar.com</span></li>
-            <li>Verwacht: pagina laadt; DNS via DHCP (62.36.55.85)</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>Testactiviteit 2 — PC5 → 172.16.5.30</h3>
-          <ul>
-            <li>PC5 (VLAN30) browser → <span class="kbd">http://172.16.5.30</span></li>
-            <li>Verwacht: intranetpagina laadt</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>Testactiviteit 3 — Ping PC2 → PC4</h3>
-          <ul>
-            <li>PC2 cmd: <span class="kbd">ping &lt;IP_PC4&gt;</span></li>
-            <li>Verwacht: 4/4 replies</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>Testactiviteit 4 — Guest WiFi ACL</h3>
-          <ul>
-            <li>Laptop_gast → <span class="kbd">172.16.5.30</span> (faalt)</li>
-            <li>Laptop_gast → <span class="kbd">www.solar.com</span> (werkt)</li>
-          </ul>
+    <!-- Stap 4 -->
+    <section id="praktijk" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 4 — Praktische handelingen</h2>
+        <div class="two-col">
+          <div>
+            <ul class="checklist">
+              <li>✅ Sterk wachtwoord maken + onderbouwen</li>
+              <li>✅ Antivirus‑scan (snel + volledig)</li>
+              <li>✅ Updates controleren en installeren</li>
+              <li>✅ Firewall‑status bekijken en uitleggen</li>
+              <li>✅ BitLocker/FileVault status verifiëren</li>
+              <li>✅ Netwerk veilig instellen (VPN/SSID)</li>
+              <li>✅ USB‑beleid toepassen</li>
+              <li>✅ Logboeken bekijken (Event Viewer basis)</li>
+            </ul>
+          </div>
+          <div>
+            <details class="accordion" open>
+              <summary>💡 Voorbeeld: sterk wachtwoord maken</summary>
+              <p>Gebruik 3+ willekeurige woorden + tekens, bv. <code>Boom!Tennis#94Fiets</code>. Leg uit: lengte &gt; complexiteit, geen hergebruik, MFA waar mogelijk.</p>
+            </details>
+            <details class="accordion">
+              <summary>💡 Voorbeeld: phishing beoordelen</summary>
+              <p>Controleer afzender, domein, spelling, onverwachte links/bijlagen. Meld via het protocol en verwijder.</p>
+            </details>
+            <details class="accordion">
+              <summary>💡 Voorbeeld: verdachte USB</summary>
+              <p>Nooit direct openen. Markeer als <em>potentieel malicious</em>, meld en laat <strong>gesloten</strong> scannen door bevoegd personeel.</p>
+            </details>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="pings">
-      <h2>Pings & screenshots (vanaf PC4)</h2>
-      <p>Open PC4 → Desktop → Command Prompt en voer onderstaande pings uit. Maak per ping een screenshot voor je verslag.</p>
-      <div class="bar"><span class="lang">Ping-script (PC4)</span><button class="copy" data-copy="pings">Kopieer</button></div>
-      <pre><code id="pings">ipconfig
-ping 10.10.30.1         # Gateway VLAN30
-ping &lt;IP_PC5&gt;           # PC5 (zelfde VLAN)
-ping &lt;IP_PC3&gt;           # PC3 (VLAN40)
-ping 10.10.40.60        # Printer0 (VLAN40)
-ping &lt;IP_Laptop2&gt;       # Laptop2 (VLAN40)
-ping &lt;IP_Laptop_gast&gt;   # Laptop_gast (VLAN50) → mag falen naar interne netten</code></pre>
-      <div class="callout">Vervang placeholders door werkelijke IP’s (<span class="kbd">ipconfig</span> per device).</div>
+    <!-- Stap 5 -->
+    <section id="incident" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 5 — Incidentmelding (sjabloon)</h2>
+        <p class="muted">Gebruik dit sjabloon en vul het feitelijk in.</p>
+        <details class="accordion" open>
+          <summary>📝 Klik om het <strong>incidentrapport‑sjabloon</strong> te tonen</summary>
+          <pre style="white-space: pre-wrap;">Titel: [korte omschrijving]
+Datum/tijd: [dd‑mm‑jjjj uu:mm]
+Betrokken gebruiker(s)/systeem: [...]
+Beschrijving (feiten): [...]
+Risico & impact: [...]
+Onder­nomen acties: [...]
+Melding gedaan aan: [...]
+Preventie/advies: [...]
+Bijlagen (screenshots, headers, logregels): [...]
+          </pre>
+        </details>
+        <p><strong>Voorbeeld</strong> — 26‑01‑2026: Phishingmail van “Microsoft Support”; risico: credential theft; actie: niet klikken, doorgestuurd naar security, afzender geblokkeerd; advies: awareness + filtertuning.</p>
+      </div>
     </section>
 
-    <section id="trouble">
-      <h2>Troubleshooting checklist</h2>
-      <ul>
-        <li><strong>VLAN40 op SW02 Gi0/1</strong>: <span class="kbd">switchport mode access</span> + <span class="kbd">switchport access vlan 40</span></li>
-        <li><strong>Trunks</strong> Core↔SW01 <em>Fa0/1</em>, Core↔SW02 <em>Fa0/3</em>, SW01↔SW02 <em>Fa0/24↔Fa0/23</em> met allowed <span class="kbd">1,30,40,50</span></li>
-        <li><strong>SVI up/up</strong>: <span class="kbd">show ip interface brief</span> (Vlan30/40/50)</li>
-        <li><strong>DHCP</strong>: clients krijgen 10.10.30.x / 10.10.40.x / 10.10.50.x</li>
-        <li><strong>ACL 150</strong> gebonden op Vlan50 <em>in</em></li>
-      </ul>
+    <!-- Stap 6 -->
+    <section id="gedrag" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 6 — Veilig gedrag tijdens examen</h2>
+        <ul class="list">
+          <li>🔒 Scherm altijd vergrendelen bij wegstappen</li>
+          <li>📦 Alleen geautoriseerde tools/sites gebruiken</li>
+          <li>🧪 Geen aannames over onbekende bestanden</li>
+          <li>🗂️ Documenteer acties en beslissingen</li>
+          <li>📣 Communiceer volgens securityprotocol</li>
+          <li>🛡️ Kies veiligheid boven snelheid</li>
+        </ul>
+      </div>
     </section>
 
-    <section id="verificatie">
-      <h2>Verificatiecommando’s</h2>
-      <div class="grid cols-2">
-        <div class="panel">
-          <h3>Op Core01_ARN</h3>
-          <pre><code>show vlan brief
-show interfaces trunk
-show ip interface brief
-show ip route
-show access-lists
-show running-config | include vtp|vlan|interface|dhcp|access-list|ospf</code></pre>
-        </div>
-        <div class="panel">
-          <h3>Op SW01/SW02</h3>
-          <pre><code>show vlan brief
-show interfaces trunk
-show running-config | include interface Fa0/|Gi0/|switchport</code></pre>
+    <!-- Stap 7 -->
+    <section id="oefenen" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 7 — Oefenen (MBO‑4 niveau)</h2>
+        <div class="two-col">
+          <div>
+            <h3>Theorie</h3>
+            <ul class="list">
+              <li>Dreiging → passende maatregel</li>
+              <li>Phishing herkennen (headers, domein, toon)</li>
+              <li>CIA‑triad toepassen in voorbeelden</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Praktijk</h3>
+            <ul class="list">
+              <li>Antivirus‑scan uitvoeren en rapporteren</li>
+              <li>Firewall controleren en uitleggen</li>
+              <li>USB‑incident veilig afhandelen</li>
+              <li>Incidentrapport schrijven (sjabloon)</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-<section class="toc" id="extracommandos">
-  <h2>Extra commando's</h2>
-  <div class="grid cols-2"></div>
-<p>Hier zijn nog een paar commandos die niet in het oefenexamen stonden, maar een grote kans hebben om op het examen te komen. Verander waar nodig! </p>
-<div class="panel">
-          <h3>Extra commando's</h3>
-          <pre><code>interface range fastEthernet 0/6 - 14
-switchport mode access
-switchport access vlan 10
-</code></pre>
-        </div>
-</section>
-
+    <!-- Stap 8 -->
+    <section id="checklist" class="grid">
+      <div class="card" style="grid-column: span 12;">
+        <h2>Stap 8 — Laatste check voor het examen</h2>
+        <ul class="checklist">
+          <li>✅ Ken ik de belangrijkste <strong>dreigingen</strong> en <strong>principes</strong>?</li>
+          <li>✅ Kan ik scenario’s <strong>analyseren</strong> en <strong>maatregelen</strong> kiezen?</li>
+          <li>✅ Werk ik aantoonbaar <strong>veilig</strong> (scherm, USB, netwerk)?</li>
+          <li>✅ Kan ik een <strong>incidentrapport</strong> opstellen?</li>
+          <li>✅ Kan ik <strong>updates</strong>, <strong>antivirus</strong> en <strong>firewall</strong> controleren?</li>
+        </ul>
+        
 <section class="toc" id="Websites">
   <h2>Websites</h2>
   <div class="grid cols-2"></div>
-<p>Hier vind je handige links voor onderwerpen zoals DHCP excluded address, trunking, OSPF, STP, ACL en meer.</p>
+<p>Handige links voor verschillende onderwerpen.</p>
   <ul>
-    <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr3-fwd/ospf/ospf-configuration-guide/ospf.html" target="_blank">OSPF Configuratie (Catalyst 9000)</a></li>
-    <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-17/configuration_guide/vlan/b_1717_vlan_9300_cg/configuring_vlan_trunks.pdf" target="_blank">VLAN Trunking Configuratie</a></li>
-    <li><a href="https://community.cisco.com/t5/switching/excluding-a-range-of-ip-addresses-from-dhcp/td-p/2851961" target="_blank">DHCP Excluded Address</a></li>
-    <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst2960/software/release/12-2_55_se/configuration/guide/scg_2960/swstp.pdf" target="_blank">STP Configuratie</a></li>
-    <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/security/acls/acls-configuration-guide/access-control-lists.html" target="_blank">ACL Configuratie</a></li>
-    <li><a href="https://www.computernetworkingnotes.com/ccna-study-guide/basic-switch-configuration-guide-with-examples.html" target="_blank"> Basic configuratie</a></li>
-    <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/vlan/vlan-configuration-guide.pdf" target="_blank"> Cisco vlan configuratie</a></li>
-    <li><a href="https://itexamanswers.net/ip-dhcp-excluded-address-command-on-cisco-router-switch.html" target="_blank"> Command sheet exluded address</a></li>
-    <li><a href="https://www.cisco.com/c/en/us/support/switches/catalyst-9300-series-switches/products-command-reference-list.html" target="_blank"> Command sheet Cisco</a></li>
-    <li><a href="https://www.cisco.com/c/en/us/td/docs/ios/lanswitch/command/reference/lsw_book.pdf" target="_blank"> Command sheet Layer 2 switches</a></li>
-    <li><a href="https://awjunaid.com/wp-content/uploads/2023/09/Ultimate-Cisco-Cheat-Sheet.pdf" target="_blank"> Ultimate cisco command sheet</a></li>
+    <li><a href="https://www.rijksoverheid.nl/onderwerpen/cybercrime-en-cybersecurity/cyber-security-verhogen" target="_blank">Overzicht van cybercrime</a></li>
+    <li><a href="https://www.rijksoverheid.nl/onderwerpen/veilige-online-leefomgeving" target="_blank">Veilig internetten</a></li>
+    <li><a href="https://www.consumentenbond.nl/veilig-internetten/nepmails-en-phishing" target="_blank">Tegen Phishing</a></li>
+    <li><a href="https://www.rijksoverheid.nl/onderwerpen/cybercrime-en-cybersecurity/vraag-en-antwoord/phishing" target="_blank">uitleg </a></li>
+    <li><a href="https://cyberveilignederland.nl/actueel/ncsc-handreiking-cybersecuritymaatregelen" target="_blank">Maatregelen</a></li>
+    <li><a href="https://www.ncsc.nl/documenten/publicaties/2022/oktober/10/basismaatregelen-voor-cybersecurity-van-iacs" target="_blank"> Handreiking Cybersecuritymaatregelen</a></li>
+    <li><a href="https://www.rijksoverheid.nl/documenten/rapporten/2024/01/16/campagne-effectonderzoek-social-engineering-veilig-internetten-najaar-2023" target="_blank"> Social engineering</a></li>
+    <li><a href="https://www.state.gov/understanding-and-preventing-phishing-attacks/" target="_blank"> CISA</a></li>
+    <li><a href="https://www.europol.europa.eu/operations-services-and-innovation/public-awareness-and-prevention-guides/no-more-ransom-do-you-need-help-unlocking-your-digital-life" target="_blank"> Interpol</a></li>
+    <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html" target="_blank"> Security rules</a></li>
+    <li><a href="https://devguide.owasp.org/en/05-implementation/01-documentation/03-cheatsheets/" target="_blank"> OWASP command sheet</a></li>
+    <li><a href="https://www.vlaanderen.be/intern/werkplek/digitale-tools-ict-hulp-en-digitale-veiligheid/we-maken-samen-een-sport-van-digitale-veiligheid/phishing-herken-het-voorkom-het" target="_blank"> herkenen van phishing</a></li>
+    <li><a href="" target="_blank"> </a></li>
 
-  </ul>
-</section>
-
-    <footer>
-      <div style="margin-top:.5rem"><a class="btn" href="#inhoud">Terug naar boven</a></div>
-    </footer>
+        <p><a class="btn" href="#top">⬆️ Terug naar boven</a></p>
+      </div>
+    </section>
   </main>
 
+  <footer class="footer">
+    Gemaakt voor P1‑K2 (MBO 4). Ontwerp door Bastiaan  </footer>
+
   <script>
-    // Copy-to-clipboard for specific blocks
-    function copyText(id){
-      const el = document.getElementById(id);
-      const text = el ? el.textContent : '';
-      if(!text) return;
-      navigator.clipboard.writeText(text).then(()=>{
-        alert('Gekopieerd naar klembord.');
-      }).catch(()=>{
-        // Fallback
-        const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy'); alert('Gekopieerd naar klembord.'); } catch(e) {}
-        document.body.removeChild(ta);
+    // Smooth scroll voor interne links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
-    }
-    document.querySelectorAll('.copy').forEach(btn=>{
-      btn.addEventListener('click', ()=> copyText(btn.dataset.copy));
     });
-    // Generation time
-    const dt = new Date();
-    document.getElementById('gen').textContent = dt.toLocaleString('nl-NL');
   </script>
 </body>
-
-<body>
-  <!-- HEADER -->
-  <header>
-    <h1 class="title">Examen configuratie werkproces 2 helper</h1>
-    <p>Hulp bij de opdrachten van werkproces 2 van het examen</p>
-  </header>
-
-
-  <main>
-      <section class="toc" id="inhoudw2">
-      <h2>Inhoud</h2>
-      <div class="grid cols-2">
-        <div>
-          <ul>
-            <li><a href="#Uitleg">Uitleg</a></li>
-            <li><a href="#opdracht1">Opdarcht 1</a></li>
-            <li><a href="#opdracht2">Opdracht 2</a></li>
-            <li><a href="#commands">Commands</a></li>
-          </ul>
-        </div>
-    </section>
-
-
-    <section id="Uitleg">
-    <h2>🔑 Uitleg W2</h2>
-    <p>
-        In W2 moet je testen, door verschillende commando's te doen (zie hierboven) kan je de onderstaande dingen testen.
-        zie het commando bij de uitleg van de opdracht. 
-
-    <section id="ssh">
-    <h2>🔑 SSH-Toegang Controleren</h2>
-    <p>
-        Controleer of alle apparaten uitsluitend via SSH bereikbaar zijn 
-        en dat Telnet is uitgeschakeld.
-        Log in met het IP adres van het device en met het juiste account via de SSH
-        Show running-config | include transport 
-    </p>
-    </section>
-
-<section id="passwords">
-    <h2>🔐 Wachtwoorden Versleuteld</h2>
-    <p>
-        Controleer of alle wachtwoorden op de apparaten versleuteld opgeslagen zijn.  
-        Dit wordt zichtbaar door het gebruik van versleutelde wachtwoordvormen. 
-        Er zal iets moeten staan als: username admin password 7 09166962.......
-        Command: Show running-config | include password 
-    </p>
-</section>
-
-<section id="privileged">
-    <h2>⬆️ Privileged Exec Mode</h2>
-    <p>
-        Controleer of je op elk apparaat in ‘enable mode’ kunt komen.  
-        De prompt moet veranderen naar het #-symbool.
-        Command: Enable
-    </p>
-</section>
-
-<section id="intranet">
-    <h2>💻 Werkplek PC → Intranet Test</h2>
-    <p>
-        Controleer vanaf een werkplek of de interne intranetpagina bereikbaar is.  
-        De test is geslaagd wanneer de pagina succesvol wordt geladen.
-    </p>
-</section>
-
-<section id="ntp">
-    <h2>⏱ NTP Server Configuratie</h2>
-    <p>
-        Controleer of de apparaten verbonden zijn met de NTP-server  
-        en of deze synchroniseert.  
-        De test is geslaagd wanneer de apparaten een actieve tijdbron tonen.
-        Command: Show running-config | include NTP 
-    </p>
-</section>
-
-<section id="syslog">
-    <h2>🧾 Syslog Server</h2>
-    <p>
-        Controleer of alle apparaten logberichten versturen naar de Syslog-server.  
-        De test is geslaagd wanneer het apparaat een actieve Syslog-host toont.
-        Command: Show running-config | include logging 
-    </p>
-</section>
-
-<section id="ios">
-    <h2>⚙️ IOS Versie Verificatie</h2>
-    <p>
-        Controleer voor elk apparaat of de IOS-versie overeenkomt met de  
-        specificaties uit de technische documentatie.
-        Command: show version
-    </p>
-</section>
-
-<section id="lldp">
-    <h2>🌐 LLDP voor Interface-Documentatie</h2>
-    <p>
-        Gebruik LLDP om de netwerkverbindingen tussen apparaten in beeld te brengen.  
-        Deze informatie gebruik je om de inventarisatie-tabel correct in te vullen.
-        Command: Show LLDP neighbors 
-    </p>
-  </section>
-
-<section id="Telnet">
-    <h2>💻 Telnet</h2>
-    <p>
-        Controleer of de devices Telnet aan hebben staan. 
-        Command: Show running-config | section line VTY
- 
-    </p>
-  </section>
-
-    <!-- OPDRACHT 1 -->
-    <section class="card" id="opdracht1">
-      <div class="stack" style="justify-content: space-between;">
-        <div>
-          <div class="kicker">Opdracht 1</div>
-          <h2 style="margin:.25rem 0 0">Inventarisatie</h2>
-        </div>
-      </div>
-
-      <div class="grid grid-3" style="margin-top:16px">
-        <div class="callout">
-          <strong>Stap 1</strong><br />
-          Sluit de laptop aan op de VLAN in de beschrijving. 
-        </div>
-        <div class="callout">
-          <strong>Stap 2</strong><br />
-          SSH inloggen: <code>ssh -l admin &lt;ip&gt;</code> → LLDP/ CDP gebruiken om buren en interfaces te zien. 
-          Je kan ook naar SSH/ telnet gaan op je desktop, vul het IP adres in, voer de gebruikersnaam in, vul het wachtwoord in en je bent in het device.
-        </div>
-      </div>
-         
-
-      <div class="callout" style="margin-top:16px">
-        <strong>Netwerktekening</strong> (Visio of draw.io): toon <em>servers in de Core‑laag</em>, <em>routers & switches in de Distribution‑laag</em>, en <em>access‑switches</em>. Noteer overal de <em>transmissiesnelheid</em>. 
-        
-        <p>
-        Voor je netwerktekening: markeer Core/Distribution/Access en zet bij elke link de snelheid (100 Mb/1 Gb/10 Gb). 
-        Voeg je afbeelding (Visio/draw.io) toe bij het inleveren.
-        <h2>Voorbeeld van een netwerk tekening</h2>
-  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flucid.app%2FsystemTemplates%2Fthumb%2Fcdab3b82-415a-421c-8c62-499d8b8f5ad0%2F0%2F124%2FNULL%2F516%3FclipToPage%3Dfalse&f=1&nofb=1&ipt=41c3936c96e5ba673327f38b6c129252268c5f1338effb97e92d1080b4c0e1d8" alt="Netwerk tekening">
-  </p>
-      </div>
-    </section>
-
-
-    <section class="card" id="opdracht2">
-      <div class="stack" style="justify-content: space-between;">
-        <div>
-          <div class="kicker">Opdracht 2</div>
-          <h2 style="margin:.25rem 0 0">Verificatie &amp; Testen</h2>
-        </div>
-       
-      </div>
-
-      <p class="muted-sm" style="margin-top:6px">
-        Controleer de items en noteer: <em>tools</em>, <em>hoe uitgevoerd</em>, <em>resultaat</em>, <em>afwijking/advies</em> (zoals in de bijlage Uitwerking). 
-        <!-- CITATION: tabel-spec → bijlage Uitwerking --> 
-        <!--  -->
-      </p>
-
-      
-
-    <section class="card" id="referenties">
-      <div class="kicker">Referentie</div>
-      <h2 style="margin:.25rem 0 10px">IP‑adressen uit netwerkdocumentatie</h2>
-      <p class="muted-sm">Gebruik deze lijst alleen om te verifiëren wat je via LLDP/CDP &amp; CLI vindt.</p>
-      
-      <div class="grid grid-2">
-        <ul class="toc">
-          <li><strong>Main_L3</strong> — 10.30.0.1</li>
-          <li><strong>SW_Core</strong> — 10.30.0.2</li>
-          <li><strong>SW1</strong> — 10.30.0.4</li>
-          <li><strong>SW2</strong> — 10.30.0.5</li>
-        </ul>
-        <ul class="toc">
-          <li><strong>SW3</strong> — 10.30.0.6</li>
-          <li><strong>Firewall</strong> — 172.16.20.2</li>
-          <li><strong>Edge</strong> — 172.16.0.2</li>
-          <li><strong>SW_Back_01</strong> — 172.16.20.5</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="card" id="commands">
-      <div class="kicker">Commandoblad</div>
-      <h2 style="margin:.25rem 0 10px">Handige CLI‑commando’s</h2>
-      <div class="grid grid-2">
-        <pre class="code"><code># Inventarisatie
-show lldp neighbors
-show lldp neighbors detail
-show ip interface brief     # SVI (VLAN 30) en beheer-IP controleren 
-<li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst2960/software/release/12-2_37_ey/configuration/guide/scg/swlldp.pdf" target="_blank"> LLDP aanzetten</a></li></code></pre>
-        <pre class="code"><code># Als LLDP niet werkt
-show cdp neighbors detail   # als LLDP geen mgmt-address toont
-        <li><a href="https://www.cisco.com/c/en/us/support/docs/network-management/discovery-protocol-cdp/43485-cdponios43485.html" target="_blank"> CDP (en LLDP) aanzetten</a></li></code></pre>
-        
-        <pre class="code"><code># Verificatie
-enable
-Show interface trunk 
-Show running-config | section line VTY
-Show running-config | include password 
-Show running-config | include transport  
-Show running-config | include logging 
-Show version 
-</code></pre>
-      </div>
-      <p class="muted-sm" style="margin-top:8px">
-        De vereisten voor tekening &amp; controles zijn afkomstig uit de opdracht/uitwerking. <!--  -->
-      </p>
-    </section>
-</main>
-
-<footer>
-      <div style="margin-top:.5rem"><a class="btn" href="#inhoud">Terug naar W1</a></div>
-            <div style="margin-top:.5rem"><a class="btn" href="#inhoudw2">Terug naar W2</a></div>
-
-      <footer>
-    Succes met je examen
-  </footer>
-    </footer>
-</body>
-
 </html>
-
-
-
