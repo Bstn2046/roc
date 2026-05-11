@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>P1‑K2 Cybersecurity ROC 4 — Stappenplan</title>
+  <title>Examen configuratie werkproces 1 helper</title>
   <style>
     :root {
       --bg: #0f172a; /* slate-900 */
@@ -54,268 +54,523 @@
     a.btn { display:inline-block; padding:.4rem .75rem; border:1px solid var(--border); border-radius:8px; color:var(--text); text-decoration:none; }
   </style>
 
-<p><a class="btn" href="#checklist">Ga naar beneden</a></p>
+</head>
 
 <body>
-  <header class="hero" id="top">
-    <div class="container">
-      <div class="glass" style="padding:20px; display:inline-block;">
-        <span class="badge">🔐 P1‑K2 • Cybersecurity • MBO 4</span>
-      </div>
-      <h1 class="title">Stappenplan voor je P1‑K2 Examen (Cybersecurity)</h1>
-      <p class="subtitle">Een complete, examenklare gids: theorie, scenario‑analyse, praktische handelingen, incidentrapportage en een laatste checklist.</p>
+
+<header>
+  <h1>Examen configuratie werkproces 1 helper</h1>
+  <p>
+    Hulp bij de opdrachten van werkproces 1 van het examen configuratie,
+    dit is gebaseerd op het oefenexamen dus neem <strong>NIET</strong> alles zomaar over,
+    maar controleer de gegevens eerst.
+  </p>
+</header>
+<div style="margin-top:.5rem; text-align:center">
+  <a class="btn" href="#samenvatting">Klik hier om naar onder te gaan</a>
+</div>
+
+  <main>
+   
+<section class="toc" id="inhoud">
+  <h2>Inhoud</h2>
+  <div class="grid cols-2">
+    <ul>
+      <li><a href="#scenario">Netwerkoverzicht</a></li>
+      <li><a href="#core">Core device configuratie</a></li>
+      <li><a href="#access">Access switch configuratie</a></li>
+      <li><a href="#wifi">Draadloos netwerk</a></li>
+      <li><a href="#devices">Statische apparaten</a></li>
+      <li><a href="#tests">Testactiviteiten</a></li>
+    </ul>
+    <ul>
+      <li><a href="#verificatie">Verificatiecommando’s</a></li>
+      <li><a href="#extracommandos">Extra commando's</a></li>
+      <li><a href="#fouten">Fouten</a></li>
+      <li><a href="#scenario-antwoorden">Scenario-antwoorden</a></li>
+      <li><a href="#Websites">Websites</a></li>
+      <li><a href="#samenvatting">Samenvatting</a></li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="scenario">
+  <h2>Netwerkoverzicht</h2>
+
+  <div class="panel">
+    <h3>VLAN-structuur</h3>
+    <ul>
+      <li>VLAN {{VLAN_ID_1}} – {{VLAN_FUNCTIE_1}}  
+        Bijvoorbeeld: VLAN 10 – Management
+      </li>
+      <li>VLAN {{VLAN_ID_2}} – {{VLAN_FUNCTIE_2}}  
+        Bijvoorbeeld: VLAN 20 – Medewerkers
+      </li>
+      <li>VLAN {{VLAN_ID_3}} – {{VLAN_FUNCTIE_3}}  
+        Bijvoorbeeld: VLAN 30 – Gasten
+      </li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>IP-adressering</h3>
+    <ul>
+      <li>Gateway VLAN {{VLAN_ID_1}}: {{IP_GATEWAY_1}}  
+        Bijvoorbeeld: 192.168.10.1
+      </li>
+      <li>Gateway VLAN {{VLAN_ID_2}}: {{IP_GATEWAY_2}}  
+        Bijvoorbeeld: 192.168.20.1
+      </li>
+      <li>Gateway VLAN {{VLAN_ID_3}}: {{IP_GATEWAY_3}}  
+        Bijvoorbeeld: 192.168.30.1
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="core">
+  <h2>Core device configuratie</h2>
+
+  <div class="bar">
+    <span class="lang">Cisco IOS — Core Device</span>
+    <button class="copy" data-copy="coreconfig">Kopieer</button>
+  </div>
+
+  <pre><code id="coreconfig">
+enable
+configure terminal
+hostname {{CORE_DEVICE_NAAM}}
+Bijvoorbeeld: CORE-SWITCH
+
+interface range {{CORE_L2_INTERFACES}}
+Bijvoorbeeld: fastethernet0/1 - 24
+ switchport
+exit
+
+vtp domain {{VTP_DOMEIN}}
+vtp mode {{VTP_MODE}}
+Bijvoorbeeld: vtp domain {{BEDRIJF}} | vtp mode server
+
+vlan {{VLAN_ID}}
+ name {{VLAN_NAAM}}
+Bijvoorbeeld: vlan 20 | name MEDEWERKERS
+exit
+
+interface vlan {{VLAN_ID}}
+ ip address {{SVI_IP}} {{SUBNET_MASK}}
+Bijvoorbeeld: 192.168.20.1 255.255.255.0
+ no shutdown
+
+ip dhcp excluded-address {{DHCP_EXCLUDE_START}} {{DHCP_EXCLUDE_EIND}}
+Bijvoorbeeld: 192.168.20.1 192.168.20.20
+
+ip dhcp pool {{POOL_NAAM}}
+Bijvoorbeeld: VLAN20
+ network {{NETWORK_IP}} {{SUBNET_MASK}}
+Bijvoorbeeld: 192.168.20.0 255.255.255.0
+ default-router {{GATEWAY_IP}}
+Bijvoorbeeld: 192.168.20.1
+ dns-server {{DNS_SERVER_IP}}
+Bijvoorbeeld: 8.8.8.8
+
+interface {{TRUNK_INTERFACE}}
+Bijvoorbeeld: fastethernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan {{VLAN_LIJST}}
+Bijvoorbeeld: 10,20,30
+
+router ospf {{OSPF_PROCESS_ID}}
+ network {{OSPF_NETWORK}} {{WILDCARD_MASK}} area {{AREA_ID}}
+Bijvoorbeeld: ospf 1 | network 192.168.0.0 0.0.255.255 area 0
+
+access-list {{ACL_NUMMER}} deny ip {{SRC_NET}} {{SRC_WC}} {{DST_NET}} {{DST_WC}}
+Bijvoorbeeld: 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255
+access-list {{ACL_NUMMER}} permit ip any any
+
+interface vlan {{ACL_VLAN}}
+Bijvoorbeeld: vlan 30
+ ip access-group {{ACL_NUMMER}} in
+
+spanning-tree vlan {{VLAN_LIJST}} priority {{STP_PRIORITY}}
+Bijvoorbeeld: spanning-tree vlan 10,20,30 priority 4096
+
+end
+  </code></pre>
+</section>
+
+<section id="access">
+  <h2>Access switch configuratie</h2>
+
+  <div class="bar">
+    <span class="lang">Cisco IOS — Access Switch</span>
+    <button class="copy" data-copy="accessconfig">Kopieer</button>
+  </div>
+
+  <pre><code id="accessconfig">
+enable
+configure terminal
+hostname {{ACCESS_SWITCH_NAAM}}
+Bijvoorbeeld: ACCESS-SW01
+
+interface {{UPLINK_INTERFACE}}
+Bijvoorbeeld: fastethernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan {{VLAN_LIJST}}
+Bijvoorbeeld: 10,20,30
+
+interface range {{ACCESS_PORT_RANGE}}
+Bijvoorbeeld: fastethernet0/2 - 10
+ switchport mode access
+ switchport access vlan {{ACCESS_VLAN}}
+Bijvoorbeeld: vlan 20
+
+end
+  </code></pre>
+</section>
+
+<section id="wifi">
+  <h2>Draadloos netwerk</h2>
+
+  <ul>
+    <li>SSID: {{SSID_NAAM}}  
+        Bijvoorbeeld: Bedrijf_WiFi
+    </li>
+    <li>Beveiliging: WPA2-PSK</li>
+    <li>Sleutel: {{SSID_SLEUTEL}}  
+        Bijvoorbeeld: Welkom123
+    </li>
+    <li>IP-adressering: DHCP</li>
+  </ul>
+</section>
+
+<section id="devices">
+  <h2>Statische apparaten</h2>
+
+  <div class="bar">
+    <span class="lang">IP instellingen</span>
+    <button class="copy" data-copy="staticdevice">Kopieer</button>
+  </div>
+
+  <pre><code id="staticdevice">
+IP Address: {{STATIC_IP}}
+Bijvoorbeeld: 192.168.20.50
+Subnet Mask: {{SUBNET_MASK}}
+Bijvoorbeeld: 255.255.255.0
+Default Gateway: {{GATEWAY_IP}}
+Bijvoorbeeld: 192.168.20.1
+DNS Server: {{DNS_SERVER_IP}}
+Bijvoorbeeld: 8.8.8.8
+  </code></pre>
+</section>
+
+<section id="tests">
+  <h2>Testactiviteiten</h2>
+  <ul>
+    <li>Controleer IP-configuratie met ipconfig  
+        Bijvoorbeeld: geldig IP in juiste VLAN-range
+    </li>
+    <li>Ping de gateway: ping {{GATEWAY_IP}}  
+        Bijvoorbeeld: ping 192.168.20.1
+    </li>
+    <li>Test communicatie tussen VLAN’s</li>
+    <li>Controleer toegangsbeperkingen (ACL)</li>
+  </ul>
+</section>
+
+<section id="verificatie">
+  <h2>Verificatiecommando’s</h2>
+
+  <pre><code>
+show vlan brief
+Controleer of VLAN’s bestaan
+
+show interfaces trunk
+Controleer trunk-poorten
+
+show ip interface brief
+VLAN-interfaces status up/up
+
+show ip route
+show access-lists
+show running-config
+  </code></pre>
+</section>
+
+<section class="toc" id="extracommandos">
+  <h2>Extra commando's</h2>
+  <div class="grid cols-2"></div>
+<p>Hier zijn nog een paar commandos die niet in het oefenexamen stonden, maar een grote kans hebben om op het examen te komen. Verander waar nodig! </p>
+<div class="panel">
+          <h3>Extra commando's</h3>
+          <pre><code>interface range fastEthernet 0/6 - 14
+switchport mode access
+switchport access vlan 10
+switchport nonegotiate
+show dtp interface
+encapsulation dot1q 10
+
+
+</code></pre>
+        </div>
+</section>
+
+<section id="fouten">
+  <h2>Veelgemaakte fouten (examen)</h2>
+
+  <div class="grid cols-2">
+
+    <div class="panel">
+      <h3>VLAN & Access-poorten</h3>
+      <ul>
+        <li>VLAN bestaat wel, maar poort staat nog in VLAN 1</li>
+        <li>VLAN niet aangemaakt op alle switches</li>
+        <li>Access-poort verkeerd geconfigureerd als trunk</li>
+        <li>Vergeten <span class="kbd">no shutdown</span> op SVI</li>
+      </ul>
     </div>
-  </header>
 
-  <main class="container">
-      <section class="toc" id="inhoud">
-      <h2>Inhoud</h2>
-      <div class="grid cols-2">
-        <div>
-          <ul>
-            <li><a href="#eisen">Exameneisen</a></li>
-            <li> <a href="#basis">Basiskennis</a></li>
-            <li><a href="#scenario">Scenario‑analyse</a></li>
-            <li><a href="#praktijk">Praktische handelingen</a></li>
-            <li><a href="#incident">Incidentrapport</a></li>
-            <li><a href="#gedrag">Veilig gedrag</a></li>
-            <li><a href="#oefenen">Oefenen</a></li>
-            <li><a href="#checklist">Laatste check</a></li>
-            <li><a href="#Websites">Websites</a></li>
-          </ul>
-      </div>
-    </section>
+    <div class="panel">
+      <h3>Trunking</h3>
+      <ul>
+        <li><span class="kbd">switchport mode trunk</span> ontbreekt</li>
+        <li>VLAN niet toegestaan in allowed list</li>
+        <li>Native VLAN mismatch</li>
+        <li>DTP veroorzaakt onverwachte trunk</li>
+      </ul>
+    </div>
 
-    <!-- Stap 1 -->
-    <section id="eisen" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 1 — Begrijp de exameneisen</h2>
-        <p class="muted">Wat MBO‑4 bij P1‑K2 doorgaans toetst:</p>
-        <ul class="list">
-          <li>✔ Herkennen van cybersecurity‑dreigingen</li>
-          <li>✔ Passende beveiligingsmaatregelen kiezen en toepassen</li>
-          <li>✔ Handelen volgens <strong>security‑ en meldingsprotocol</strong></li>
-          <li>✔ Analyse van verdachte situaties (risico + impact)</li>
-          <li>✔ Professioneel documenteren (incidentrapport/advies)</li>
-          <li>✔ Veilig gedrag tonen tijdens het examen</li>
-        </ul>
-      </div>
-    </section>
+    <div class="panel">
+      <h3>DHCP</h3>
+      <ul>
+        <li>Geen excluded-address ingesteld</li>
+        <li>Verkeerde default-router in pool</li>
+        <li>DHCP-pool gebruikt verkeerd netwerk</li>
+        <li>SVI down → DHCP werkt niet</li>
+      </ul>
+    </div>
 
-    <!-- Stap 2 -->
-    <section id="basis" class="grid">
-      <div class="card" style="grid-column: span 7;">
-        <h2>Stap 2 — Cybersecurity‑basiskennis</h2>
-        <h3>2.1 Dreigingen</h3>
-        <ul class="list">
-          <li>Malware: virus, worm, trojan, <em>ransomware</em></li>
-          <li>Phishing / spear phishing</li>
-          <li>Social engineering: pretexting, baiting, tailgating, shoulder surfing</li>
-          <li>DDoS, brute‑force, man‑in‑the‑middle, zero‑day</li>
-        </ul>
-        <h3>2.2 Principes</h3>
-        <ul class="list">
-          <li>CIA‑triad: <strong>Confidentiality – Integrity – Availability</strong></li>
-          <li>Least Privilege • Defense in Depth • MFA</li>
-          <li>Encryptie vs hashing • Beleid: wachtwoorden, clean desk, privacy</li>
-        </ul>
-        <h3>2.3 Technieken &amp; tools</h3>
-        <ul class="list">
-          <li>Firewall, Antivirus/EDR, VPN</li>
-          <li>Patchmanagement/updates</li>
-          <li>Schijfencryptie (BitLocker/FileVault)</li>
-        </ul>
-      </div>
-      <div class="card" style="grid-column: span 5;">
-        <h3>Snelle KPI’s</h3>
-        <div class="kpi">🧠 Theorie paraat? <span class="tag">Dreigingen</span> <span class="tag">CIA</span> <span class="tag">MFA</span></div>
-        <div class="kpi">🛡️ Tools gezien? <span class="tag">Firewall</span> <span class="tag">Antivirus</span> <span class="tag">VPN</span></div>
-        <div class="kpi">📦 Praktijk geoefend? <span class="tag">Scan</span> <span class="tag">Updates</span> <span class="tag">Encryptie</span></div>
-        <p class="muted">Tip: leg in je eigen woorden uit <em>waarom</em> elke maatregel werkt.</p>
-      </div>
-    </section>
+    <div class="panel">
+      <h3>ACL</h3>
+      <ul>
+        <li>ACL op verkeerde interface geplaatst</li>
+        <li>Verkeerde richting (in / out)</li>
+        <li>Permit any any vergeten</li>
+        <li>Bron en bestemming omgedraaid</li>
+      </ul>
+    </div>
 
-    <!-- Stap 3 -->
-    <section id="scenario" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 3 — Scenario’s analyseren</h2>
-        <div class="two-col">
-          <div>
-            <h3>3.1 Vaste analysemethode</h3>
-            <ol class="list">
-              <li><strong>Wat zie ik?</strong> (feiten, geen aannames)</li>
-              <li><strong>Risico</strong> (voor data, systemen, gebruiker)</li>
-              <li><strong>Kans × impact</strong> (inschatting)</li>
-              <li><strong>Directe actie</strong> (isoleren, blokkeren, informeren)</li>
-              <li><strong>Melding</strong> (moet dit worden vastgelegd?)</li>
-              <li><strong>Wie</strong> (volgens protocol)</li>
-            </ol>
-          </div>
-          <div>
-            <h3>3.2 Koppel situatie → maatregel</h3>
-            <table class="table">
-              <thead>
-                <tr><th>Situatie</th><th>Passende maatregel</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Phishingmail</td><td>Melden → blokkeren → verwijderen</td></tr>
-                <tr><td>Ransomware‑verdacht gedrag</td><td>Apparaat isoleren → niet herstarten → incident melden</td></tr>
-                <tr><td>Onbekende USB</td><td>Niet openen → melden → veilig laten scannen</td></tr>
-                <tr><td>Zwak wachtwoord</td><td>Password policy toepassen + uitleg</td></tr>
-                <tr><td>Open/Onveilig Wi‑Fi</td><td>VPN gebruiken of vermijden</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
+  </div>
+</section>
 
-    <!-- Stap 4 -->
-    <section id="praktijk" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 4 — Praktische handelingen</h2>
-        <div class="two-col">
-          <div>
-            <ul class="checklist">
-              <li>✅ Sterk wachtwoord maken + onderbouwen</li>
-              <li>✅ Antivirus‑scan (snel + volledig)</li>
-              <li>✅ Updates controleren en installeren</li>
-              <li>✅ Firewall‑status bekijken en uitleggen</li>
-              <li>✅ BitLocker/FileVault status verifiëren</li>
-              <li>✅ Netwerk veilig instellen (VPN/SSID)</li>
-              <li>✅ USB‑beleid toepassen</li>
-              <li>✅ Logboeken bekijken (Event Viewer basis)</li>
-            </ul>
-          </div>
-          <div>
-            <details class="accordion" open>
-              <summary>💡 Voorbeeld: sterk wachtwoord maken</summary>
-              <p>Gebruik 3+ willekeurige woorden + tekens, bv. <code>Boom!Tennis#94Fiets</code>. Leg uit: lengte &gt; complexiteit, geen hergebruik, MFA waar mogelijk.</p>
-            </details>
-            <details class="accordion">
-              <summary>💡 Voorbeeld: phishing beoordelen</summary>
-              <p>Controleer afzender, domein, spelling, onverwachte links/bijlagen. Meld via het protocol en verwijder.</p>
-            </details>
-            <details class="accordion">
-              <summary>💡 Voorbeeld: verdachte USB</summary>
-              <p>Nooit direct openen. Markeer als <em>potentieel malicious</em>, meld en laat <strong>gesloten</strong> scannen door bevoegd personeel.</p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
+<section id="scenario-antwoorden">
+  <h2>Scenario-variaties met antwoorden</h2>
 
-    <!-- Stap 5 -->
-    <section id="incident" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 5 — Incidentmelding (sjabloon)</h2>
-        <p class="muted">Gebruik dit sjabloon en vul het feitelijk in.</p>
-        <details class="accordion" open>
-          <summary>📝 Klik om het <strong>incidentrapport‑sjabloon</strong> te tonen</summary>
-          <pre style="white-space: pre-wrap;">Titel: [korte omschrijving]
-Datum/tijd: [dd‑mm‑jjjj uu:mm]
-Betrokken gebruiker(s)/systeem: [...]
-Beschrijving (feiten): [...]
-Risico & impact: [...]
-Onder­nomen acties: [...]
-Melding gedaan aan: [...]
-Preventie/advies: [...]
-Bijlagen (screenshots, headers, logregels): [...]
-          </pre>
-        </details>
-        <p><strong>Voorbeeld</strong> — 26‑01‑2026: Phishingmail van “Microsoft Support”; risico: credential theft; actie: niet klikken, doorgestuurd naar security, afzender geblokkeerd; advies: awareness + filtertuning.</p>
-      </div>
-    </section>
+  <!-- Scenario 1 -->
+  <div class="panel">
+    <h3>Scenario 1 – DHCP probleem</h3>
 
-    <!-- Stap 6 -->
-    <section id="gedrag" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 6 — Veilig gedrag tijdens examen</h2>
-        <ul class="list">
-          <li>🔒 Scherm altijd vergrendelen bij wegstappen</li>
-          <li>📦 Alleen geautoriseerde tools/sites gebruiken</li>
-          <li>🧪 Geen aannames over onbekende bestanden</li>
-          <li>🗂️ Documenteer acties en beslissingen</li>
-          <li>📣 Communiceer volgens securityprotocol</li>
-          <li>🛡️ Kies veiligheid boven snelheid</li>
-        </ul>
-      </div>
-    </section>
+    <p>
+      <strong>Vraag:</strong><br>
+      Apparaten krijgen geen IP-adres via DHCP. Hoe pak je dit op?
+    </p>
 
-    <!-- Stap 7 -->
-    <section id="oefenen" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 7 — Oefenen (MBO‑4 niveau)</h2>
-        <div class="two-col">
-          <div>
-            <h3>Theorie</h3>
-            <ul class="list">
-              <li>Dreiging → passende maatregel</li>
-              <li>Phishing herkennen (headers, domein, toon)</li>
-              <li>CIA‑triad toepassen in voorbeelden</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Praktijk</h3>
-            <ul class="list">
-              <li>Antivirus‑scan uitvoeren en rapporteren</li>
-              <li>Firewall controleren en uitleggen</li>
-              <li>USB‑incident veilig afhandelen</li>
-              <li>Incidentrapport schrijven (sjabloon)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <p><strong>Oplossing / aanpak:</strong></p>
+    <ol>
+      <li>Controleer of de interface en SVI actief zijn</li>
+      <li>Controleer of het apparaat in het juiste VLAN zit</li>
+      <li>Controleer of de DHCP-pool bestaat</li>
+      <li>Controleer excluded addresses</li>
+      <li>Controleer of de default gateway klopt</li>
+    </ol>
 
-    <!-- Stap 8 -->
-    <section id="checklist" class="grid">
-      <div class="card" style="grid-column: span 12;">
-        <h2>Stap 8 — Laatste check voor het examen</h2>
-        <ul class="checklist">
-          <li>✅ Ken ik de belangrijkste <strong>dreigingen</strong> en <strong>principes</strong>?</li>
-          <li>✅ Kan ik scenario’s <strong>analyseren</strong> en <strong>maatregelen</strong> kiezen?</li>
-          <li>✅ Werk ik aantoonbaar <strong>veilig</strong> (scherm, USB, netwerk)?</li>
-          <li>✅ Kan ik een <strong>incidentrapport</strong> opstellen?</li>
-          <li>✅ Kan ik <strong>updates</strong>, <strong>antivirus</strong> en <strong>firewall</strong> controleren?</li>
-        </ul>
-        
+    <p><strong>Commando’s:</strong></p>
+    <pre><code>
+show ip interface brief
+show vlan brief
+show ip dhcp pool
+show running-config | section dhcp
+    </code></pre>
+  </div>
+
+  <!-- Scenario 2 -->
+  <div class="panel">
+    <h3>Scenario 2 – Trunk werkt niet</h3>
+
+    <p>
+      <strong>Vraag:</strong><br>
+      Een VLAN bestaat, maar verkeer komt niet door over de trunk. Wat controleer je?
+    </p>
+
+    <p><strong>Oplossing / aanpak:</strong></p>
+    <ol>
+      <li>Controleer of de poort in trunk mode staat</li>
+      <li>Controleer of het VLAN is toegestaan op de trunk</li>
+      <li>Controleer of de trunk aan beide kanten identiek is</li>
+      <li>Controleer native VLAN instellingen</li>
+    </ol>
+
+    <p><strong>Commando’s:</strong></p>
+    <pre><code>
+show interfaces trunk
+show running-config interface fastethernet0/1
+    </code></pre>
+  </div>
+
+  <!-- Scenario 3 -->
+  <div class="panel">
+    <h3>Scenario 3 – ACL blokkeert te veel verkeer</h3>
+
+    <p>
+      <strong>Vraag:</strong><br>
+      Na het instellen van een ACL werkt intern verkeer niet meer. Wat kan fout zijn gegaan?
+    </p>
+
+    <p><strong>Oplossing / aanpak:</strong></p>
+    <ol>
+      <li>Controleer of de ACL op de juiste interface staat</li>
+      <li>Controleer de richting van de ACL (in of out)</li>
+      <li>Controleer de volgorde van de regels</li>
+      <li>Controleer of een permit-regel aanwezig is</li>
+      <li>Controleer of bron en bestemming correct zijn</li>
+    </ol>
+
+    <p><strong>Commando’s:</strong></p>
+    <pre><code>
+show access-lists
+show running-config interface vlan
+    </code></pre>
+  </div>
+
+  <!-- Scenario 4 -->
+  <div class="panel">
+    <h3>Scenario 4 – OSPF neighbor komt niet online</h3>
+
+    <p>
+      <strong>Vraag:</strong><br>
+      OSPF routers zien elkaar niet als buren. Wat kan de oorzaak zijn?
+    </p>
+
+    <p><strong>Oplossing / aanpak:</strong></p>
+    <ol>
+      <li>Controleer of beide routers in dezelfde OSPF area zitten</li>
+      <li>Controleer het network statement en wildcard mask</li>
+      <li>Controleer of de interface niet passive is</li>
+      <li>Controleer of de interfaces up zijn</li>
+      <li>Controleer Layer‑3 connectiviteit</li>
+    </ol>
+
+    <p><strong>Commando’s:</strong></p>
+    <pre><code>
+show ip ospf neighbor
+show ip ospf interface
+show ip interface brief
+    </code></pre>
+  </div>
+</section>
+
 <section class="toc" id="Websites">
   <h2>Websites</h2>
-  <div class="grid cols-2"></div>
-<p>Handige links voor verschillende onderwerpen.</p>
-  <ul>
-    <li><a href="https://www.rijksoverheid.nl/onderwerpen/cybercrime-en-cybersecurity/cyber-security-verhogen" target="_blank">Overzicht van cybercrime</a></li>
-    <li><a href="https://www.rijksoverheid.nl/onderwerpen/veilige-online-leefomgeving" target="_blank">Veilig internetten</a></li>
-    <li><a href="https://www.consumentenbond.nl/veilig-internetten/nepmails-en-phishing" target="_blank">Tegen Phishing</a></li>
-    <li><a href="https://www.rijksoverheid.nl/onderwerpen/cybercrime-en-cybersecurity/vraag-en-antwoord/phishing" target="_blank">uitleg </a></li>
-    <li><a href="https://cyberveilignederland.nl/actueel/ncsc-handreiking-cybersecuritymaatregelen" target="_blank">Maatregelen</a></li>
-    <li><a href="https://www.ncsc.nl/documenten/publicaties/2022/oktober/10/basismaatregelen-voor-cybersecurity-van-iacs" target="_blank"> Handreiking Cybersecuritymaatregelen</a></li>
-    <li><a href="https://www.rijksoverheid.nl/documenten/rapporten/2024/01/16/campagne-effectonderzoek-social-engineering-veilig-internetten-najaar-2023" target="_blank"> Social engineering</a></li>
-    <li><a href="https://www.state.gov/understanding-and-preventing-phishing-attacks/" target="_blank"> CISA</a></li>
-    <li><a href="https://www.europol.europa.eu/operations-services-and-innovation/public-awareness-and-prevention-guides/no-more-ransom-do-you-need-help-unlocking-your-digital-life" target="_blank"> Interpol</a></li>
-    <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html" target="_blank"> Security rules</a></li>
-    <li><a href="https://devguide.owasp.org/en/05-implementation/01-documentation/03-cheatsheets/" target="_blank"> OWASP command sheet</a></li>
-    <li><a href="https://www.vlaanderen.be/intern/werkplek/digitale-tools-ict-hulp-en-digitale-veiligheid/we-maken-samen-een-sport-van-digitale-veiligheid/phishing-herken-het-voorkom-het" target="_blank"> herkenen van phishing</a></li>
-    <li><a href="" target="_blank"> </a></li>
+  <p>
+    Hier vind je handige links voor onderwerpen zoals DHCP excluded address, trunking, OSPF, STP, ACL en meer.
+  </p>
 
-        <p><a class="btn" href="#top">⬆️ Terug naar boven</a></p>
-      </div>
-    </section>
+  <div class="grid cols-2">
+    <ul>
+      <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr3-fwd/ospf/ospf-configuration-guide/ospf.html" target="_blank">OSPF Configuratie (Catalyst 9000)</a></li>
+      <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-17/configuration_guide/vlan/b_1717_vlan_9300_cg/configuring_vlan_trunks.pdf" target="_blank">VLAN Trunking Configuratie</a></li>
+      <li><a href="https://community.cisco.com/t5/switching/excluding-a-range-of-ip-addresses-from-dhcp/td-p/2851961" target="_blank">DHCP Excluded Address</a></li>
+      <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst2960/software/release/12-2_55_se/configuration/guide/scg_2960/swstp.pdf" target="_blank">STP Configuratie</a></li>
+      <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/security/acls/acls-configuration-guide/access-control-lists.html" target="_blank">ACL Configuratie</a></li>
+      <li><a href="https://www.computernetworkingnotes.com/ccna-study-guide/stp-spanning-tree-protocol-explained-with-examples.html" target="_blank">Spanning Tree uitleg</a></li>
+    </ul>
+
+    <ul>
+      <li><a href="https://www.computernetworkingnotes.com/ccna-study-guide/basic-switch-configuration-guide-with-examples.html" target="_blank">Basic switch configuratie</a></li>
+      <li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/vlan/vlan-configuration-guide.pdf" target="_blank">Cisco VLAN configuratie</a></li>
+      <li><a href="https://itexamanswers.net/ip-dhcp-excluded-address-command-on-cisco-router-switch.html" target="_blank">DHCP excluded address commands</a></li>
+      <li><a href="https://www.cisco.com/c/en/us/support/switches/catalyst-9300-series-switches/products-command-reference-list.html" target="_blank">Cisco command reference</a></li>
+      <li><a href="https://www.cisco.com/c/en/us/td/docs/ios/lanswitch/command/reference/lsw_book.pdf" target="_blank">Layer‑2 switch command sheet</a></li>
+      <li><a href="https://awjunaid.com/wp-content/uploads/2023/09/Ultimate-Cisco-Cheat-Sheet.pdf" target="_blank">Ultimate Cisco cheat sheet</a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="samenvatting">
+  <h2>samenvatting (laatste check)</h2>
+
+  <div class="grid cols-2">
+
+    <div class="panel">
+      <h3>Switching</h3>
+      <pre><code>
+show vlan brief
+show interfaces trunk
+switchport mode access
+switchport access vlan X
+switchport mode trunk
+      </code></pre>
+    </div>
+
+    <div class="panel">
+      <h3>Routing</h3>
+      <pre><code>
+show ip route
+router ospf 1
+ip route 0.0.0.0 0.0.0.0 X.X.X.X
+      </code></pre>
+    </div>
+
+    <div class="panel">
+      <h3>DHCP</h3>
+      <pre><code>
+ip dhcp pool NAAM
+network X.X.X.0 255.255.255.0
+default-router X.X.X.1
+      </code></pre>
+    </div>
+
+    <div class="panel">
+      <h3>ACL</h3>
+      <pre><code>
+access-list X deny ip SRC DST
+access-list X permit ip any any
+ip access-group X in
+      </code></pre>
+    </div>
+
+  </div>
+</section>
+    
+<footer>
+  <p id="gen"></p>
+  <div style="margin-top:.5rem">
+    <a class="btn" href="#inhoud">Terug naar boven</a>
+  </div>
+</footer>
   </main>
 
-  <footer class="footer">
-    Gemaakt voor P1‑K2 (MBO 4). Ontwerp door Bastiaan  </footer>
-
   <script>
-    // Smooth scroll voor interne links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    function copyText(id){
+      const el = document.getElementById(id);
+      const text = el ? el.textContent : '';
+      if(!text) return;
+      navigator.clipboard.writeText(text).then(()=>{
+        alert('Gekopieerd naar klembord.');
+      }).catch(()=>{
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); alert('Gekopieerd naar klembord.'); } catch(e) {}
+        document.body.removeChild(ta);
       });
+    }
+    document.querySelectorAll('.copy').forEach(btn=>{
+      btn.addEventListener('click', ()=> copyText(btn.dataset.copy));
     });
+    // Generation time
+    const dt = new Date();
+    document.getElementById('gen').textContent = dt.toLocaleString('nl-NL');
   </script>
 </body>
 </html>
