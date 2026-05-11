@@ -133,7 +133,7 @@
   <h2>Core device configuratie</h2>
 
   <div class="bar">
-    <span class="lang">Cisco IOS — Core Device</span>
+    <span class="lang">Cisco IOS — Core Device. Kopier en plak in een note en verander waar nodig</span>
     <button class="copy" data-copy="coreconfig">Kopieer</button>
   </div>
 
@@ -193,7 +193,8 @@ Bijvoorbeeld: vlan 30
  ip access-group {{ACL_NUMMER}} in
 
 spanning-tree vlan {{VLAN_LIJST}} priority {{STP_PRIORITY}}
-Bijvoorbeeld: spanning-tree vlan 10,20,30 priority 4096
+Bijvoorbeeld: spanning-tree vlan 10,20,30 priority 4096, root primary, root secondary
+    STP priorities gaan alleen in stappen van 4096, met de hoogste 61440
 
 end
   </code></pre>
@@ -203,7 +204,7 @@ end
   <h2>Access switch configuratie</h2>
 
   <div class="bar">
-    <span class="lang">Cisco IOS — Access Switch</span>
+    <span class="lang">Cisco IOS — Access Switch. Kopier en plak in een note en verander waar nodig</span>
     <button class="copy" data-copy="accessconfig">Kopieer</button>
   </div>
 
@@ -246,9 +247,10 @@ end
 
 <section id="devices">
   <h2>Statische apparaten</h2>
+  <h3>Invullen in het betreffende device</h3>
 
   <div class="bar">
-    <span class="lang">IP instellingen</span>
+    <span class="lang">IP instellingen. Kopier en plak in een note en verander waar nodig</span>
     <button class="copy" data-copy="staticdevice">Kopieer</button>
   </div>
 
@@ -266,7 +268,7 @@ Bijvoorbeeld: 8.8.8.8
 
 <section id="tests">
   
-<h1>testen uitvoeren</h1>
+<h1>Testen uitvoeren</h1>
 
 <h2>Algemene regels</h2>
 <ul>
@@ -406,14 +408,14 @@ show running-config
 <p>Hier zijn nog een paar commandos die niet in het oefenexamen stonden, maar een grote kans hebben om op het examen te komen. Verander waar nodig! </p>
 <div class="panel">
           <h3>Extra commando's</h3>
-          <pre><code>
-interface range fa0/1 - 10
+          <pre><code>interface range fastEthernet 0/6 - 14
 switchport mode access
 switchport access vlan ...
 switchport nonegotiate
 show dtp interface
 encapsulation dot1q 10
 ip routing
+interface range fa0/1 - 10
 
 
 </code></pre>
@@ -602,7 +604,7 @@ show ip interface brief
 </section>
 
 <section id="samenvatting">
-  <h2>samenvatting (laatste check)</h2>
+  <h2>Samenvatting (laatste check)</h2>
 
   <div class="grid cols-2">
 
@@ -644,6 +646,40 @@ ip access-group X in
       </code></pre>
     </div>
 
+<p>
+  <strong>VTP</strong><br>
+  VTP (VLAN Trunking Protocol) wordt gebruikt om VLAN‑informatie automatisch te delen tussen switches.
+  Hierdoor hoef je VLAN’s niet op elke switch handmatig aan te maken.
+  Het werkt alleen binnen hetzelfde VTP‑domein en verkeerd gebruik kan VLAN’s overschrijven.
+</p>
+
+<p>
+  <strong>Trunking</strong><br>
+  Trunking maakt het mogelijk om meerdere VLAN’s over één fysieke verbinding te versturen.
+  Met 802.1Q‑tagging blijft het verkeer van verschillende VLAN’s gescheiden.
+  Trunks worden vooral gebruikt tussen switches en core‑apparaten.
+</p>
+
+<p>
+  <strong>OSPF</strong><br>
+  OSPF (Open Shortest Path First) is een dynamisch routingprotocol dat automatisch de beste route berekent.
+  Het gebruikt kosten (cost) om het snelste pad te bepalen.
+  OSPF wordt veel gebruikt in grotere netwerken.
+</p>
+
+<p>
+  <strong>ACL</strong><br>
+  ACL’s (Access Control Lists) bepalen welk netwerkverkeer is toegestaan of geblokkeerd.
+  Dit kan gebaseerd zijn op IP‑adres, protocol of poortnummer.
+  Ze worden toegepast op interfaces om de beveiliging van het netwerk te regelen.
+</p>
+
+<p>
+  <strong>Spanning Tree</strong><br>
+  Spanning Tree Protocol (STP) voorkomt netwerkloops bij meerdere verbindingen tussen switches.
+  Het kiest één switch als root bridge en blokkeert overbodige paden.
+  Hierdoor blijft het netwerk stabiel en betrouwbaar.
+</p>
   </div>
 </section>
     
