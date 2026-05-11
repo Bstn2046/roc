@@ -265,17 +265,120 @@ Bijvoorbeeld: 8.8.8.8
 </section>
 
 <section id="tests">
-  <h2>Testactiviteiten</h2>
-  <ul>
-    <li>Controleer IP-configuratie met ipconfig  
-        Bijvoorbeeld: geldig IP in juiste VLAN-range
-    </li>
-    <li>Ping de gateway: ping {{GATEWAY_IP}}  
-        Bijvoorbeeld: ping 192.168.20.1
-    </li>
-    <li>Test communicatie tussen VLAN’s</li>
-    <li>Controleer toegangsbeperkingen (ACL)</li>
-  </ul>
+  
+<h1>Snel Testplan – Testactiviteiten</h1>
+
+<h2>Algemene regels</h2>
+<ul>
+    <li>Voer per test één actie uit</li>
+    <li>Maak per test één duidelijke screenshot</li>
+    <li>Werkt het resultaat zoals verwacht? Laat “Afwijkingen” leeg</li>
+</ul>
+
+<hr>
+
+<h2>Testactiviteit 1 – Website bereiken</h2>
+
+<h3>Uitvoering</h3>
+<ol>
+    <li>Open de PC</li>
+    <li>Ga naar <strong>Desktop → Web Browser</strong></li>
+    <li>Ga naar de opgegeven website</li>
+    <li>Maak een screenshot van de geopende pagina</li>
+</ol>
+
+<h3>Verwacht resultaat</h3>
+<p>De website is bereikbaar en wordt correct geladen.</p>
+
+<h3>Werkelijk resultaat</h3>
+<p>De website opent succesvol. Screenshot toegevoegd.</p>
+
+<h3>Afwijkingen</h3>
+<p></p>
+
+<hr>
+
+<h2>Testactiviteit 2 – Interne webpagina</h2>
+
+<h3>Uitvoering</h3>
+<ol>
+    <li>Open de PC</li>
+    <li>Ga naar <strong>Desktop → Web Browser</strong></li>
+    <li>Vul het interne webadres in</li>
+    <li>Maak een screenshot van de pagina</li>
+</ol>
+
+<h3>Verwacht resultaat</h3>
+<p>De interne webpagina is bereikbaar.</p>
+
+<h3>Werkelijk resultaat</h3>
+<p>De interne webpagina wordt correct weergegeven. Screenshot toegevoegd.</p>
+
+<h3>Afwijkingen</h3>
+<p></p>
+
+<hr>
+
+<h2>Testactiviteit 3 – Ping tussen PC’s</h2>
+
+<h3>Uitvoering</h3>
+<ol>
+    <li>Open de bron-PC</li>
+    <li>Ga naar <strong>Desktop → Command Prompt</strong></li>
+    <li>Voer het ping-commando uit naar de andere PC</li>
+    <li>Maak een screenshot van de replies</li>
+</ol>
+
+<h3>Verwacht resultaat</h3>
+<p>De ping is succesvol zonder packet loss.</p>
+
+<h3>Werkelijk resultaat</h3>
+<p>De ping is succesvol uitgevoerd. Screenshot toegevoegd.</p>
+
+<h3>Afwijkingen</h3>
+<p></p>
+
+<hr>
+
+<h2>Testactiviteit 4 – Gast WiFi beveiliging</h2>
+
+<h3>Deeltest A – Geen toegang tot intranet</h3>
+
+<h4>Uitvoering</h4>
+<ol>
+    <li>Verbind de gast-laptop met het gastennetwerk</li>
+    <li>Open de webbrowser</li>
+    <li>Ga naar het interne adres</li>
+    <li>Maak een screenshot van de foutmelding of time-out</li>
+</ol>
+
+<h4>Verwacht resultaat</h4>
+<p>Het intranet is niet bereikbaar.</p>
+
+<h4>Werkelijk resultaat</h4>
+<p>Toegang wordt geblokkeerd. Screenshot toegevoegd.</p>
+
+<hr>
+
+<h3>Deeltest B – Toegang tot website</h3>
+
+<h4>Uitvoering</h4>
+<ol>
+    <li>Gebruik dezelfde gast-laptop</li>
+    <li>Open de webbrowser</li>
+    <li>Ga naar de toegestane website</li>
+    <li>Maak een screenshot van de geopende pagina</li>
+</ol>
+
+<h4>Verwacht resultaat</h4>
+<p>De website is bereikbaar via het gastennetwerk.</p>
+
+<h4>Werkelijk resultaat</h4>
+<p>Website opent succesvol. Screenshot toegevoegd.</p>
+
+<h4>Afwijkingen</h4>
+<p></p>
+
 </section>
 
 <section id="verificatie">
